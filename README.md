@@ -1,8 +1,7 @@
 # 🛡️ Vulnerability Assessment & Penetration Test Report: OWASP Juice Shop
 
 **Target:** `http://localhost:3000` (OWASP Juice Shop)  
-**Author:** Anil Kashyap
-
+**Author:** Anil Kashyap  
 **Assessment Type:** Web Application Penetration Testing & Passive Security Audit  
 **Date:** August 24, 2026
 
@@ -24,19 +23,9 @@ A comprehensive security assessment was conducted against the target application
 | **Medium** | Insecure Direct Object Reference | A01:2021 - Access Control | `/rest/basket/` |
 | **Medium** | DOM-based XSS | A03:2021 - Injection | `/#/search?q=` |
 | **Medium** | Sensitive Directory Exposure | A01:2021 - Access Control | `/ftp/` |
-| **Low** | Missing Security Headers (CSP, X-Content-Type) | A05:2021 - Misconfiguration | Global |
+| **Low** | Missing Security Headers | A05:2021 - Misconfiguration | Global |
 
-## Professional Self-Analysis & Improvement Review
-
-### What Went Well:
-* **Methodological Approach:** We didn't just fire automated tools blindly. We identified the "Soft 404" trap during the FFUF scan and adjusted our parameters (`-fs 9393`) to find the actual hidden directories (`/ftp`).
-* **Evidence Gathering:** We captured clear, indisputable proof of concepts (PoCs) for both the Burp Intruder attack (identifying the 200 OK status) and the DOM XSS execution in the browser.
-* **Clear Classification:** We mapped the findings directly to business risk (High/Medium/Low) rather than just listing technical bugs.
-
-### Areas for Professional Improvement:
-* **Tool Output Management:** In a real-world scenario, dumping unformatted, raw terminal output (like the initial massive FFUF log) into a report is bad practice. We must always filter and present only the actionable data to the client.
-* **Passive Scanning Integration:** We initially relied heavily on manual exploitation. In a professional engagement, running the passive crawler (ZAP/Burp Spider) first while manually browsing the site ensures we capture all baseline misconfigurations (like missing headers) before active attacks begin.
-* **Remediation Specificity:** While we provided good general advice (e.g., "Use parameterized queries"), a top-tier report includes specific code snippets or framework configurations relevant to the client's tech stack (e.g., specifically addressing Angular DOM sanitization functions for the XSS finding).
+---
 
 ## 🛠️ Vulnerability Findings & Remediations
 
@@ -84,6 +73,22 @@ A comprehensive security assessment was conducted against the target application
   * `X-Content-Type-Options: nosniff`
   * `X-Frame-Options: DENY` (or `SAMEORIGIN`)
   * `Content-Security-Policy: default-src 'self'`
+
+---
+
+## 📈 Professional Self-Analysis & Improvement Review
+
+### What Went Well:
+* **Methodological Approach:** We didn't just fire automated tools blindly. We identified the "Soft 404" trap during the FFUF scan and adjusted our parameters (`-fs 9393`) to find the actual hidden directories (`/ftp`).
+* **Evidence Gathering:** We captured clear, indisputable proof of concepts (PoCs) for both the Burp Intruder attack (identifying the 200 OK status) and the DOM XSS execution in the browser.
+* **Clear Classification:** We mapped the findings directly to business risk (High/Medium/Low) rather than just listing technical bugs.
+
+### Areas for Professional Improvement:
+* **Tool Output Management:** In a real-world scenario, dumping unformatted, raw terminal output (like the initial massive FFUF log) into a report is bad practice. We must always filter and present only the actionable data to the client.
+* **Passive Scanning Integration:** We initially relied heavily on manual exploitation. In a professional engagement, running the passive crawler (ZAP/Burp Spider) first while manually browsing the site ensures we capture all baseline misconfigurations (like missing headers) before active attacks begin.
+* **Remediation Specificity:** While we provided good general advice (e.g., "Use parameterized queries"), a top-tier report includes specific code snippets or framework configurations relevant to the client's tech stack (e.g., specifically addressing Angular DOM sanitization functions for the XSS finding).
+
+---
 
 ## 📁 Repository Structure
 - `/report/` - Contains the final PDF Vulnerability Assessment Report.
