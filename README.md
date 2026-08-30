@@ -93,3 +93,4 @@ A comprehensive security assessment was conducted against the target application
 ## 📁 Repository Structure
 - `/report/` - Contains the final PDF Vulnerability Assessment Report.
 - `/screenshots/` - Contains proof-of-concept visual evidence for all identified vulnerabilities.
+thank you.
